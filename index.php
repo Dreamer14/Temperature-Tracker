@@ -1,32 +1,45 @@
 <?php 
 class TempTracker{
     private $tempratureHolder = array();
-    private $minTemp;
-    private $maxTemp;
-    private $avgTemp;
+    private $LowestTemp = null;
+    private $HighestTemp = null;
+    private $avgTemp = null;
+    private $sum = 0;
+    private $numberOfvalues = 0;
     
     public function insert($temprature) {
+    
+        //for Highest temprature
+        
+        if ($this->HighestTemp == null || $temprature > $this->HighestTemp)
+        {
+            $this->HighestTemp = $temprature;
+        }
+            
+        //for Lowest temprature
+        if ($this->LowestTemp == null || $temprature < $this->LowestTemp)
+        {
+            $this->LowestTemp = $temprature;
+        }
+        
+        //for Average temprature
+        
+        $this->numberOfvalues++;
+        $this->sum += $temprature;
+    	$this->avgTemp = $this->sum / $this->numberOfvalues;
+    }
   
-    $this->tempratureHolder[] = $temprature;
-    
-    $this->maxTemp = max($this->tempratureHolder);
-   
-    $this->minTemp = min($this->tempratureHolder);
-       
-    $this->avgTemp = array_sum($this->tempratureHolder)/count($this->tempratureHolder);
-    
-  }
     //function to return max temp
     
     public function getMax()
 {
-return $this->maxTemp;
+return $this->HighestTemp;
 }
     //function to return min temp
     
     public function getMin()
 {
-return $this->minTemp;
+return $this->LowestTemp;
 }
     
     //function to return Average temp
@@ -42,8 +55,8 @@ $obj->insert(20);
 $obj->insert(30);
 $obj->insert(10);
 $obj->insert(50);
-echo 'Maximum Temprature = '.$obj->getMax().'<br />';
-echo 'Minimum Temprature = '.$obj->getMin().'<br />';
+echo 'Highest Temprature = '.$obj->getMax().'<br />';
+echo 'Lowest Temprature = '.$obj->getMin().'<br />';
 echo 'Average Temprature = '.$obj->getAvg().'<br />';
 
 
