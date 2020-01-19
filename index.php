@@ -44,7 +44,7 @@ $obj->insert(10);
 $obj->insert(50);
 echo 'Maximum Temprature = '.$obj->getMax().'<br />';
 echo 'Minimum Temprature = '.$obj->getMin().'<br />';
-echo 'Maximum Temprature = '.$obj->getAvg().'<br />';
+echo 'Average Temprature = '.$obj->getAvg().'<br />';
 
 
 
